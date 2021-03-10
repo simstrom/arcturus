@@ -1,0 +1,31 @@
+.button {
+-fx-background-color: 
+        #090a0c,
+        linear-gradient(#F3F3F3 0%, #110515 20%, #110515 100%),
+        linear-gradient(#091EA8, #41215A),
+        radial-gradient(center 50% 0%, radius 100%, rgba(114,131,148,0.9), rgba(255,255,255,0));
+    -fx-background-radius: 50,50;
+    -fx-background-insets: 0,1,2,0;
+    -fx-text-fill: white;
+    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );
+    -fx-font-family: "Futura";
+    -fx-font-weight: bold;
+    -fx-text-fill: linear-gradient(white, #d0d0d0);
+    -fx-font-size: 16px;
+    -fx-padding: 10 50 10 50;
+}
+.button Text {
+    -fx-effect: dropshadow( one-pass-box , rgba(0,0,0,0.9) , 1, 0.0 , 0 , 1 );
+    }
+    
+.button:hover {
+	-fx-background-color: 
+		#090a0c,
+        linear-gradient(#F3F3F3 0%, #110515 20%, #110515 100%),
+        linear-gradient(#152172, #200E2F),
+        radial-gradient(center 50% 0%, radius 100%, rgba(114,131,148,0.6), rgba(255,255,255,0));
+}
+
+.button:pressed {
+    -fx-background-insets: 4 0 0 0,2 0 3 0, 4 0 5 0, 4 0 5 0;
+}
