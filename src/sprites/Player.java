@@ -1,7 +1,6 @@
 package sprites;
 
 import constants.Constants;
-import javafx.scene.image.Image;
 import states.GameModel;
 
 public class Player extends Sprite {
@@ -20,7 +19,7 @@ public class Player extends Sprite {
 		this.velocityX = 0;
 		this.velocityY = 0;
 	}
-	
+
 	public void setVelocity(double x, double y) {
 		velocityX = x;
 		velocityY = y;
@@ -30,7 +29,7 @@ public class Player extends Sprite {
 		velocityX += x;
 		velocityY += y;
 	}
-	
+
 	@Override
 	public void update() {
 		super.update();
@@ -47,7 +46,7 @@ public class Player extends Sprite {
 			setPosY(0);
 		}
 	}
-	
+
 	public boolean intersects(PowerUp powerUp) {
 		return powerUp.getBoundary().intersects(this.getBoundary());
 	}
@@ -56,34 +55,34 @@ public class Player extends Sprite {
 	public Projectile shoot() {
 		return new PlayerProjectile(model, posX, posY, hasRapidFire);
 	}
-	
+
 	public void takeDamage() {
 		if (lives == 1) {
 			lives--;
 			this.explode();
 		} else {
-		setPosition(posX = 360, posY = 800);
-		lives--;
-		
+			setPosition(posX = 360, posY = 800);
+			lives--;
+
 		}
 	}
-	
+
 	public int getLives() {
 		return lives;
 	}
-	
+
 	public void setShield(boolean value) {
 		this.hasShield = value;
 	}
-	
+
 	public boolean hasShield() {
 		return hasShield;
 	}
-	
+
 	public void setRapidFire(boolean value) {
 		this.hasRapidFire = value;
 	}
-	
+
 	public boolean hasRapidFire() {
 		return hasRapidFire;
 	}

@@ -35,14 +35,10 @@ import javafx.stage.Stage;
  * @author magni54, alomi60
  */
 public class Main extends Application {
-	private static ArrayList<String> input = new ArrayList<>();
-	
+	private ArrayList<String> input = new ArrayList<>();
+
 	public static void main(String[] args) {
 		launch(args);
-	}
-	
-	public static ArrayList getInput() {
-		return input;
 	}
 
 	@Override
@@ -60,11 +56,8 @@ public class Main extends Application {
 		// Calculate frequency in nano seconds
 		final double nanoPerUpdate = 1000000000.0 / targetFps;
 
-		
 		gameStage.setScene(gameScene);
 
-		
-		
 		// We set up a setOnKeyPressed, to handle keyboard input,
 		// like we had a onMouseClick in the canvas for the paint lab.
 		gameScene.setOnKeyPressed(new EventHandler<KeyEvent>() {
@@ -76,7 +69,7 @@ public class Main extends Application {
 				}
 			}
 		});
-		
+
 		gameScene.setOnKeyReleased(new EventHandler<KeyEvent>() {
 			@Override
 			public void handle(KeyEvent event) {
@@ -86,11 +79,10 @@ public class Main extends Application {
 					input.remove("SPACE");
 			}
 		});
-		
+
 		gameScene.setOnMouseClicked(event -> {
 			model.mouseClicked(event);
 		});
-		
 
 		// We set an AnimationTimer, to control the flow of the game.
 		new AnimationTimer() {
@@ -99,7 +91,7 @@ public class Main extends Application {
 			// This method will be called
 			public void handle(long now) {
 				model.handleInput(input);
-				
+
 				// Perform game update and game rendering. This will
 				// execute approximately 60 times per second, or as
 				// close to that as possible. Can vary greatly between systems.

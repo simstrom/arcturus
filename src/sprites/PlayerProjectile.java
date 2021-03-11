@@ -12,19 +12,19 @@ public class PlayerProjectile extends Projectile {
 		super(model, posX, posY);
 		this.power = power;
 	}
-	
+
 	public void update() {
-		posY-=speed;
+		posY -= speed;
 	}
 
 	@Override
 	public void render(GraphicsContext g) {
 		if (power) {
 			speed = 40;
-			g.drawImage(Images.PLAYER_LASER, posX+20, posY-50, powerSize, powerSize+60);
+			g.drawImage(Images.PLAYER_LASER, posX + 20, posY - 50, powerSize, powerSize + 60);
 		} else {
-			g.drawImage(Images.PLAYER_LASER, posX+25, posY-20);
-		}		
+			g.drawImage(Images.PLAYER_LASER, posX + 25, posY - 20);
+		}
 	}
 
 }

@@ -2,8 +2,6 @@ package states;
 
 import javafx.scene.Group;
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.image.Image;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import main.GameFrame;
@@ -16,7 +14,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import constants.Constants;
-import constants.Images;
 
 /**
  * This class represents a state of the game. These states are different views
@@ -52,7 +49,7 @@ public abstract class GameState {
 	public abstract void update();
 
 	public abstract void draw(GraphicsContext g);
-	
+
 	public abstract void init(GameFrame frame);
 
 	/**
@@ -64,9 +61,9 @@ public abstract class GameState {
 	 * been pressed, the state needs to check for that event inside this function.
 	 */
 //	public abstract void keyPressed(KeyEvent key);
-	
+
 	public abstract void mouseClicked(MouseEvent event);
-	
+
 	public abstract void handleInput(List<String> input);
 
 	/**
@@ -92,7 +89,8 @@ public abstract class GameState {
 	 *
 	 * By default it does nothing, but can be useful sometimes. E.g. unpause, or
 	 * load something.
-	 * @param frame 
+	 * 
+	 * @param frame
 	 */
 	public abstract void activate(GameFrame frame);
 

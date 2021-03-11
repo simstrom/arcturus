@@ -1,14 +1,7 @@
 package states;
 
-import java.util.stream.IntStream;
-
-import constants.Constants;
-import constants.Images;
 import javafx.scene.paint.Color;
-import sprites.Enemy;
 import sprites.Meteor;
-import sprites.Shield;
-import sprites.Ship;
 
 public class LevelTwo extends PlayState {
 

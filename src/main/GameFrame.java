@@ -27,8 +27,8 @@ public class GameFrame extends StackPane {
 	public void repaint() {
 		g.repaint();
 	}
-	
-	public Canvas getCanvas( ) {
+
+	public Canvas getCanvas() {
 		return g;
 	}
 }

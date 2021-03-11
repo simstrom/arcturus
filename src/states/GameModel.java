@@ -8,14 +8,12 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.List;
 
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.Pane;
 import main.GameFrame;
+
 /**
  * This class represents the current state of the game.
  *
@@ -45,15 +43,14 @@ public class GameModel {
 	public GameModel() {
 		// We start out in the MenuState.
 		this.currentState = new MenuState(this);
-		
+
 		try {
-			ObjectInputStream in = new ObjectInputStream(
-					 new FileInputStream(new File("highscore.game")));
-					highScoreList = (ArrayList<Integer>) in.readObject();
-					System.out.println("Loading success!");
-			} catch (IOException | ClassNotFoundException e) {
-				e.printStackTrace();
-			}
+			ObjectInputStream in = new ObjectInputStream(new FileInputStream(new File("highscore.game")));
+			highScoreList = (ArrayList<Integer>) in.readObject();
+			System.out.println("Loading success!");
+		} catch (IOException | ClassNotFoundException e) {
+			e.printStackTrace();
+		}
 	}
 
 	/**
@@ -125,7 +122,7 @@ public class GameModel {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		
+
 		System.out.println(highScoreList);
 	}
 
@@ -145,19 +142,19 @@ public class GameModel {
 //			return 0;
 //		}
 	}
-	
+
 	public void increaseLevel() {
 		level++;
 	}
-	
+
 	public int getLevel() {
 		return level;
 	}
-	
+
 	public boolean isBetween(int value, int min, int max) {
-		return((value > min) && (value < max));
+		return ((value > min) && (value < max));
 	}
-	
+
 	public void setFrame(GameFrame frame) {
 		this.frame = frame;
 		currentState.init(frame);

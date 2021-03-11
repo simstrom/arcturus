@@ -1,14 +1,9 @@
 package states;
 
-import testing.Tester;
-
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
-import javafx.scene.input.KeyCode;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
-import javafx.scene.text.Font;
 import javafx.scene.text.TextAlignment;
 import main.GameFrame;
 import main.World;
@@ -21,12 +16,8 @@ import sprites.RapidFire;
 import sprites.Shield;
 import sprites.Ship;
 
-import static constants.Constants.SCREEN_HEIGHT;
-import static constants.Constants.SCREEN_WIDTH;
-
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.IntStream;
 
 import constants.Constants;
 import constants.Images;
@@ -48,23 +39,15 @@ import constants.Images;
  * parameters are passed into the PlayState.
  */
 public class PlayState extends GameState {
-	/*
-	 * The following three variables are just used to show that a change of state
-	 * can be made. The same variables also exist in the MenuState, can you think of
-	 * a way to make this more general and not duplicate variables?
-	 */
+
 	protected Player player;
 	private int ammoCounter = 0;
 	private ArrayList<Projectile> laserList = new ArrayList<>();
 	protected ArrayList<Enemy> enemyList = new ArrayList<>();
 	protected ArrayList<PowerUp> powerUps = new ArrayList<>();
 	private PowerUp activePower = null;
-	private int progress = 0;
 	protected Color bgColor;
 	protected Image bg;
-
-	/* Class only used for testing */
-	private Tester tester;
 
 	public PlayState(GameModel model) {
 		super(model);
@@ -76,13 +59,8 @@ public class PlayState extends GameState {
 		for (int i = 0; i < Constants.MAX_ENEMIES; i++) {
 			enemyList.add(new Ship(model));
 		}
-		
-//		IntStream.range(0, Constants.MAX_ENEMIES).mapToObj(i -> Enemy.newEnemy(model)).forEach(enemyList::add);
 	}
 
-	/**
-	 * Draws information text to the screen.
-	 */
 	@Override
 	public void draw(GraphicsContext g) {
 		g.clearRect(0, 0, Constants.SCREEN_WIDTH, Constants.SCREEN_HEIGHT);
@@ -125,54 +103,26 @@ public class PlayState extends GameState {
 		if (model.getGameOver()) {
 			g.setFont(Constants.mainFont);
 			g.setFill(Color.SLATEBLUE);
-			if (model.getScore() > model.getHighScore().get(0)) {
-				g.fillText("NEW \n HIGHSCORE!", Constants.SCREEN_WIDTH / 2, Constants.SCREEN_HEIGHT / 2.5);
+			if ((model.getHighScore() == null) || (model.getScore() > model.getHighScore().get(2))) {
+				g.fillText("NEW \n HIGHSCORE!", Constants.SCREEN_WIDTH / 2, Constants.SCREEN_HEIGHT / 3.2);
 			} else {
-			g.fillText("Game Over!", Constants.SCREEN_WIDTH / 2, Constants.SCREEN_HEIGHT / 2.5);
+				g.fillText("Game Over!", Constants.SCREEN_WIDTH / 2, Constants.SCREEN_HEIGHT / 2.5);
 			}
 			g.setFont(Constants.subFont);
 			g.setFill(Color.WHITE);
-			g.fillText("Your Score \n" + model.getScore(), Constants.SCREEN_WIDTH / 2, Constants.SCREEN_HEIGHT / 1.5);
+			g.fillText("Your Score \n" + model.getScore(), Constants.SCREEN_WIDTH / 2, Constants.SCREEN_HEIGHT / 2);
+			g.setFont(Constants.miscFont);
+			g.fillText("Press SPACE to continue", Constants.SCREEN_WIDTH / 2, Constants.SCREEN_HEIGHT / 1.5);
 		}
 
 		for (World world : universe) {
 			world.draw(g);
 		}
-
-//		drawBg(g, bgColor);
-//
-//		g.setFill(fontColor);
-//		g.setFont(new Font(30)); // Big letters
-//		g.fillText(informationText, SCREEN_WIDTH / 3, SCREEN_HEIGHT / 3);
-		// Can also use:
-		// g.setStroke(fontColor);
-		// g.strokeText(informationText, SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2);
-
-		// This could be a call to all our objects that we want to draw.
-		// Using the tester simply to illustrate how it could work.
-//		tester.delegate(g);
 	}
-	
+
 	@Override
 	public void init(GameFrame frame) {
-		}
-
-//	@Override
-//	public void keyPressed(KeyEvent key) {
-//		System.out.println("Trycker på " + key.getCode() + " i PlayState");
-//
-//		player.setVelocity(0, 0);
-//		// CASE ISTÄLLET FÖR IF.
-//		if (key.getCode() == KeyCode.A) {
-//			player.addVelocity(-6, 0);
-//		} else if (key.getCode() == KeyCode.D) {
-//			player.addVelocity(6, 0);
-//		} else if (key.getCode() == KeyCode.W) {
-//			player.addVelocity(0, -6);
-//		} else if (key.getCode() == KeyCode.S) {
-//			player.addVelocity(0, 6);
-//		}
-//	}
+	}
 
 	public void mouseClicked(MouseEvent event) {
 		if ((!model.getGameOver()) && (laserList.size() < Constants.MAX_AMMO)) {
@@ -198,7 +148,7 @@ public class PlayState extends GameState {
 			player.addVelocity(0, -6);
 		if (input.contains("S"))
 			player.addVelocity(0, 6);
-		if (model.getGameOver()  && (input.contains("SPACE"))){
+		if (model.getGameOver() && (input.contains("SPACE"))) {
 			model.setGameOver(false);
 			model.switchState(new ScoreState(model));
 		}
@@ -222,7 +172,8 @@ public class PlayState extends GameState {
 				if (laser.instersects(enemy) && !enemy.isExploding()) {
 					model.increaseScore();
 					enemy.explode();
-					laserList.remove(i);
+					if (laserList.size() != 0)
+						laserList.remove(i);
 //					progress++;
 					if (model.getScore() == 10) {
 						model.increaseLevel();
@@ -233,7 +184,7 @@ public class PlayState extends GameState {
 					if (chance == 1) {
 						int drop = Constants.RAND.nextInt(2);
 						if (drop == 1) {
-							powerUps.add(new RapidFire(enemy.getPosX(), enemy.getPosY(), Images.RAPID));   
+							powerUps.add(new RapidFire(enemy.getPosX(), enemy.getPosY(), Images.RAPID));
 						} else {
 							powerUps.add(new Shield(enemy.getPosX(), enemy.getPosY(), Images.SHIELD));
 						}
@@ -246,7 +197,7 @@ public class PlayState extends GameState {
 			if (player.intersects(powerUps.get(i))) {
 				System.out.println("Picked up POWERUP!");
 				if (powerUps.get(i) instanceof Shield)
-					player.setShield(true);					
+					player.setShield(true);
 				if (powerUps.get(i) instanceof RapidFire) {
 					player.setRapidFire(true);
 				}
@@ -288,24 +239,12 @@ public class PlayState extends GameState {
 			if (universe.get(i).getPosY() > Constants.SCREEN_HEIGHT)
 				universe.remove(i);
 		}
-//		
-//		if (model.isBetween(model.getScore(), 9, 11)) {
-//			model.switchState(new PlayStateTwo(model));
-//		}
 	}
 
-	/**
-	 * We currently don't have anything to activate in the PlayState so we leave
-	 * this method empty in this case.
-	 */
 	@Override
 	public void activate(GameFrame frame) {
 	}
 
-	/**
-	 * We currently don't have anything to deactivate in the PlayState so we leave
-	 * this method empty in this case.
-	 */
 	@Override
 	public void deactivate(GameFrame frame) {
 	}

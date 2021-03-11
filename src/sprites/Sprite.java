@@ -41,15 +41,15 @@ public abstract class Sprite {
 	public void setPosY(int posY) {
 		this.posY = posY;
 	}
-	
+
 	public void setPosX(int posX) {
 		this.posX = posX;
 	}
-	
+
 	public int getPosY() {
 		return posY;
 	}
-	
+
 	public int getPosX() {
 		return posX;
 	}
@@ -87,11 +87,11 @@ public abstract class Sprite {
 		exploding = true;
 		explosionStep = -1;
 	}
-	
+
 	public boolean isDestroyed() {
 		return destroyed;
 	}
-	
+
 	public boolean isExploding() {
 		return exploding;
 	}
