@@ -1,8 +1,8 @@
 package sprites;
 
 import constants.Constants;
+import sound.Sound;
 import states.GameModel;
-import states.Sound;
 
 public class Player extends Sprite {
 	private int posX;
@@ -17,8 +17,6 @@ public class Player extends Sprite {
 	private Sound shieldUp = new Sound("resources/shieldup.mp3", 0.5);
 	private Sound shieldDown = new Sound("resources/shielddown.mp3", 0.5);
 	private Sound rapidUp = new Sound("resources/rapidfire.wav", 0.5);
-
-
 
 	public Player(GameModel model) {
 		super(model);
@@ -59,10 +57,9 @@ public class Player extends Sprite {
 		return powerUp.getBoundary().intersects(this.getBoundary());
 	}
 
-	@Override
 	public Projectile shoot() {
 		laser.play();
-		return new PlayerProjectile(model, posX, posY, hasRapidFire);
+		return new PlayerProjectile(posX, posY, hasRapidFire);
 	}
 
 	public void takeDamage() {

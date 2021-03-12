@@ -7,6 +7,7 @@ import java.util.List;
 
 import constants.Constants;
 import constants.Images;
+import environment.World;
 import javafx.geometry.Pos;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Button;
@@ -16,7 +17,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import main.GameFrame;
-import main.World;
+import sound.Sound;
 
 public class ScoreState extends GameState {
 
@@ -43,7 +44,7 @@ public class ScoreState extends GameState {
 		g.setFont(Constants.subFont);
 		g.setFill(Color.WHITE);
 		int place = 1;
-		int height = 575;
+		int height = 500;
 		for (int i = model.getHighScore().size() - 1; i >= 0; i--) {
 			g.fillText(place + " : " + model.getHighScore().get(i).toString() + " points", SCREEN_WIDTH / 2,
 					SCREEN_HEIGHT - height);
@@ -98,5 +99,4 @@ public class ScoreState extends GameState {
 		if (Sound.gameMusic.isPlaying())
 			Sound.gameMusic.stop();
 	}
-
 }

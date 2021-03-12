@@ -3,18 +3,19 @@ package sprites;
 import constants.Constants;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.canvas.GraphicsContext;
-import states.GameModel;
 
 public abstract class Projectile {
-	protected GameModel model;
 	protected double posX;
-	public double posY;
+	protected double posY;
 	protected int speed = 10;
 
-	public Projectile(GameModel model, double posX, double posY) {
-		this.model = model;
+	public Projectile(double posX, double posY) {
 		this.posX = posX;
 		this.posY = posY;
+	}
+
+	public double getPosY() {
+		return posY;
 	}
 
 	public abstract void update();

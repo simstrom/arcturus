@@ -11,10 +11,8 @@ public class Meteor extends Enemy {
 		super(model);
 		setSpeed((model.getScore() / 50) + 1);
 		spawn = Constants.RAND.nextInt(2);
-		System.out.println(spawn);
 		if (spawn == 1)
 			spawn = posX = Constants.SCREEN_WIDTH;
-
 		setPosition(spawn, Constants.RAND.nextInt(Constants.SCREEN_HEIGHT - 60));
 		setImage(Images.METEORS[Constants.RAND.nextInt(Images.METEORS.length)]);
 	}

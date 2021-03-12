@@ -5,20 +5,19 @@ import constants.Images;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
+import sound.Sound;
 import states.GameModel;
-import states.Sound;
 
 public abstract class Sprite {
 	protected GameModel model;
 	private Image image;
-	protected int posX;
+	private int posX;
 	private int posY;
 	private int width;
 	private int height;
 	protected boolean exploding;
 	protected boolean destroyed;
 	private int explosionStep = 0;
-	
 	private Sound explosion = new Sound("resources/explosion.wav", 0.1);
 
 	public Sprite(GameModel model) {
@@ -57,8 +56,6 @@ public abstract class Sprite {
 		return posX;
 	}
 
-	public abstract void setVelocity(double x, double y);
-
 	public void update() {
 		if (exploding) {
 			explosionStep++;
@@ -83,8 +80,6 @@ public abstract class Sprite {
 	public boolean intersects(Sprite s) {
 		return s.getBoundary().intersects(this.getBoundary());
 	}
-
-	public abstract Projectile shoot();
 
 	public void explode() {
 		exploding = true;

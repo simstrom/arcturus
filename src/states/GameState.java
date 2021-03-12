@@ -5,7 +5,6 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import main.GameFrame;
-import main.World;
 
 import static constants.Constants.SCREEN_HEIGHT;
 import static constants.Constants.SCREEN_WIDTH;
@@ -14,6 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import constants.Constants;
+import environment.World;
 
 /**
  * This class represents a state of the game. These states are different views

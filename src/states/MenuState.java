@@ -1,7 +1,5 @@
 package states;
 
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Button;
@@ -12,7 +10,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import main.GameFrame;
-import main.World;
+import sound.Sound;
 
 import static constants.Constants.SCREEN_HEIGHT;
 import static constants.Constants.SCREEN_WIDTH;
@@ -21,6 +19,7 @@ import java.util.List;
 
 import constants.Constants;
 import constants.Images;
+import environment.World;
 
 /**
  * This state represents the menu of the Game The main responsibility of this

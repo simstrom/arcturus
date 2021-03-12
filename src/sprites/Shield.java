@@ -1,16 +1,19 @@
 package sprites;
 
-import constants.Images;
-import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 
 public class Shield extends PowerUp {
+	private boolean active;
 
 	public Shield(int posX, int posY, Image image) {
 		super(posX, posY, image);
 	}
 
-	public void renderShield(GraphicsContext gc, int posX, int posY) {
-		gc.drawImage(Images.ACTIVE_SHIELD, posX, posY);
+	public void setActive(boolean active) {
+		this.active = active;
+	}
+
+	public boolean isActive() {
+		return active;
 	}
 }

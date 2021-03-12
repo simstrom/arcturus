@@ -1,12 +1,10 @@
 package states;
 
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
-import javafx.scene.text.TextAlignment;
 import main.GameFrame;
-import main.World;
+import sound.Sound;
 import sprites.Enemy;
 import sprites.Meteor;
 import sprites.Player;
@@ -21,6 +19,8 @@ import java.util.List;
 
 import constants.Constants;
 import constants.Images;
+import environment.PlayUI;
+import environment.World;
 
 /**
  * This state represents the Playing State of the Game The main responsibility
@@ -39,24 +39,22 @@ import constants.Images;
  * parameters are passed into the PlayState.
  */
 public class PlayState extends GameState {
-	
+
+	protected Color bgColor;
 	protected Player player;
 	private int ammoCounter = 0;
 	private ArrayList<Projectile> laserList = new ArrayList<>();
 	protected ArrayList<Enemy> enemyList = new ArrayList<>();
 	protected ArrayList<PowerUp> powerUps = new ArrayList<>();
 	private PowerUp activePower = null;
-	protected Color bgColor;
-	protected Image bg;
-	
-	
+	private PlayUI ui;
 
 	public PlayState(GameModel model) {
 		super(model);
 		bgColor = Color.BLACK;
-		bg = Images.MENU_BG;
 		player = new Player(model);
 		player.setImage(Images.PLAYER);
+		ui = new PlayUI(model, player);
 
 		for (int i = 0; i < Constants.MAX_ENEMIES; i++) {
 			enemyList.add(new Ship(model));
@@ -74,10 +72,8 @@ public class PlayState extends GameState {
 			PowerUp powerUp = powerUps.get(i);
 			powerUp.render(g);
 		}
-
-		if (player.hasShield()) {
+		if (player.hasShield())
 			activePower.renderActive(g, player.getPosX(), player.getPosY());
-		}
 
 		for (int i = laserList.size() - 1; i >= 0; i--) {
 			Projectile shot = laserList.get(i);
@@ -89,33 +85,9 @@ public class PlayState extends GameState {
 			enemy.render(g);
 		}
 
-		g.setTextAlign(TextAlignment.CENTER);
-		g.setFont(Constants.miscFont);
-		g.setFill(Color.BLACK);
-		g.fillRect(0, 0, Constants.SCREEN_WIDTH, 70);
-		g.setFill(Color.WHITE);
-		g.fillText("Score: " + model.getScore(), 70, 50);
-		g.drawImage(Images.PLAYER_LIFE, 350, 30);
-		g.fillText("X " + player.getLives(), 410, 50);
-		g.fillText("Level: " + model.getLevel(), 730, 50);
-		if (player.hasRapidFire()) {
-			g.fillText("RAPID FIRE AMMO LEFT\n" + (ammoCounter) + " / " + Constants.POWER_AMMO, 360, 920);
-			g.drawImage(Images.RAPID_BADGE, 25, 80);
-		}
-		if (model.getGameOver()) {
-			g.setFont(Constants.mainFont);
-			g.setFill(Color.SLATEBLUE);
-			if ((model.getHighScore() == null) || (model.getScore() > model.getHighScore().get(2))) {
-				g.fillText("NEW \n HIGHSCORE!", Constants.SCREEN_WIDTH / 2, Constants.SCREEN_HEIGHT / 3.2);
-			} else {
-				g.fillText("Game Over!", Constants.SCREEN_WIDTH / 2, Constants.SCREEN_HEIGHT / 2.5);
-			}
-			g.setFont(Constants.subFont);
-			g.setFill(Color.WHITE);
-			g.fillText("Your Score \n" + model.getScore(), Constants.SCREEN_WIDTH / 2, Constants.SCREEN_HEIGHT / 2);
-			g.setFont(Constants.miscFont);
-			g.fillText("Press SPACE to continue", Constants.SCREEN_WIDTH / 2, Constants.SCREEN_HEIGHT / 1.5);
-		}
+		ui.draw(g);
+		if (player.hasRapidFire())
+			ui.drawAmmo(g, ammoCounter);
 
 		for (World world : universe) {
 			world.draw(g);
@@ -165,7 +137,7 @@ public class PlayState extends GameState {
 
 		for (int i = laserList.size() - 1; i >= 0; i--) {
 			Projectile laser = laserList.get(i);
-			if (laser.posY < 0) {
+			if (laser.getPosY() < 0) {
 				laserList.remove(i);
 				continue;
 			}
@@ -177,13 +149,11 @@ public class PlayState extends GameState {
 					enemy.explode();
 					if (laserList.size() != 0)
 						laserList.remove(i);
-//					progress++;
 					if (model.getScore() == 50) {
 						model.increaseLevel();
 						model.switchState(new SplashState(model));
 					}
-					// RANDOM CHANCE TO DROP POWERUP
-					int chance = Constants.RAND.nextInt(30);
+					int chance = Constants.RAND.nextInt(2);
 					if (chance == 1) {
 						int drop = Constants.RAND.nextInt(2);
 						if (drop == 1) {
@@ -198,7 +168,6 @@ public class PlayState extends GameState {
 
 		for (int i = powerUps.size() - 1; i >= 0; i--) {
 			if (player.intersects(powerUps.get(i))) {
-				System.out.println("Picked up POWERUP!");
 				if (powerUps.get(i) instanceof Shield)
 					player.setShield(true);
 				if (powerUps.get(i) instanceof RapidFire) {

@@ -19,13 +19,4 @@ public abstract class Enemy extends Sprite {
 	public void setSpeed(int speed) {
 		this.speed = speed;
 	}
-
-	@Override
-	public void setVelocity(double x, double y) {
-	}
-
-	@Override
-	public Projectile shoot() {
-		return new EnemyProjectile(model, posX, posY);
-	}
 }

@@ -1,4 +1,4 @@
-package main;
+package environment;
 
 import constants.Constants;
 import javafx.scene.canvas.GraphicsContext;

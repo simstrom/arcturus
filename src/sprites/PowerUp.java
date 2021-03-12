@@ -6,13 +6,12 @@ import javafx.geometry.Rectangle2D;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 
-public class PowerUp {
+public abstract class PowerUp {
 	private Image image;
 	private int posX;
 	private int posY;
 	private double width;
 	private double height;
-	protected boolean activeShield;
 
 	public PowerUp(int posX, int posY, Image image) {
 		this.image = image;
@@ -38,13 +37,5 @@ public class PowerUp {
 
 	public boolean intersects(Sprite s) {
 		return s.getBoundary().intersects(this.getBoundary());
-	}
-
-	public void setActive(boolean active) {
-		this.activeShield = active;
-	}
-
-	public boolean isActive() {
-		return activeShield;
 	}
 }

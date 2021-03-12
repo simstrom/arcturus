@@ -47,7 +47,6 @@ public class GameModel {
 		try {
 			ObjectInputStream in = new ObjectInputStream(new FileInputStream(new File("highscore.game")));
 			highScoreList = (ArrayList<Integer>) in.readObject();
-			System.out.println("Loading success!");
 		} catch (IOException | ClassNotFoundException e) {
 			e.printStackTrace();
 		}
@@ -104,7 +103,6 @@ public class GameModel {
 
 	public void increaseScore() {
 		score++;
-		System.out.println(score);
 	}
 
 	public void resetScore() {
@@ -118,12 +116,9 @@ public class GameModel {
 		try {
 			ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(new File("highscore.game")));
 			out.writeObject(this.highScoreList);
-			System.out.println("Save successful!");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-
-		System.out.println(highScoreList);
 	}
 
 	public boolean getGameOver() {
@@ -136,11 +131,6 @@ public class GameModel {
 
 	public ArrayList<Integer> getHighScore() {
 		return highScoreList;
-//		if (highScoreList.size() > 0) {
-//			return highScoreList.get(0);
-//		} else {
-//			return 0;
-//		}
 	}
 
 	public void increaseLevel() {
@@ -149,10 +139,6 @@ public class GameModel {
 
 	public int getLevel() {
 		return level;
-	}
-
-	public boolean isBetween(int value, int min, int max) {
-		return ((value > min) && (value < max));
 	}
 
 	public void setFrame(GameFrame frame) {

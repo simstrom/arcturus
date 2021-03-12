@@ -7,6 +7,7 @@ import java.util.List;
 
 import constants.Constants;
 import constants.Images;
+import environment.World;
 import javafx.geometry.Pos;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.effect.Glow;
@@ -15,7 +16,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import main.GameFrame;
-import main.World;
+import sound.Sound;
 
 public class SplashState extends GameState {
 
@@ -38,7 +39,6 @@ public class SplashState extends GameState {
 	public void draw(GraphicsContext g) {
 		g.clearRect(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
 		g.drawImage(Images.SPLASH_BG, 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
-
 		g.setFont(Constants.subFont);
 		g.setFill(Color.WHITE);
 		g.fillText("Press SPACE to continue", SCREEN_WIDTH / 2, SCREEN_HEIGHT - 100);
