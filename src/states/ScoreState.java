@@ -19,6 +19,13 @@ import javafx.scene.paint.Color;
 import main.GameFrame;
 import sound.Sound;
 
+/**
+ * The class represents the highscore menu of the game. Responsibilities are to
+ * load the current highscores and displaying them.
+ * 
+ * @author simonnystrom
+ *
+ */
 public class ScoreState extends GameState {
 
 	public ScoreState(GameModel model) {

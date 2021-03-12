@@ -22,8 +22,9 @@ import constants.Images;
 import environment.World;
 
 /**
- * This state represents the menu of the Game The main responsibility of this
- * class is to allow the user to swap state to the PlayState
+ * This state represents the menu of the Game. The main responsibility of this
+ * class is to allow the user to swap states through the menu buttons.
+ * 
  */
 public class MenuState extends GameState {
 	private Image bg = Images.MENU_BG;
@@ -31,12 +32,9 @@ public class MenuState extends GameState {
 	public MenuState(GameModel model) {
 		super(model);
 		if (!Sound.menuMusic.isPlaying())
-		Sound.menuMusic.play();
+			Sound.menuMusic.play();
 	}
 
-	/**
-	 * Draws information text to the screen
-	 */
 	@Override
 	public void draw(GraphicsContext g) {
 		g.drawImage(bg, 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
@@ -118,5 +116,4 @@ public class MenuState extends GameState {
 	public void deactivate(GameFrame frame) {
 		frame.getChildren().remove(contents);
 	}
-
 }

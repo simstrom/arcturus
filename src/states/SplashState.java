@@ -18,6 +18,13 @@ import javafx.scene.text.Text;
 import main.GameFrame;
 import sound.Sound;
 
+/**
+ * This class represents the intermission between levels. Informing players a
+ * level is completed and entering the next.
+ * 
+ * @author simonnystrom
+ *
+ */
 public class SplashState extends GameState {
 
 	public SplashState(GameModel model) {
@@ -89,7 +96,7 @@ public class SplashState extends GameState {
 	public void handleInput(List<String> input) {
 		if (input.contains("SPACE"))
 			model.switchState(new LevelTwo(model));
-			Sound.click.play();
+		Sound.click.play();
 	}
 
 	@Override

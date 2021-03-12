@@ -4,6 +4,13 @@ import constants.Constants;
 import constants.Images;
 import states.GameModel;
 
+/**
+ * One enemy-type which moves on the Y-axis in a downward direction with a
+ * individual(faster) speed. Spawns from the top of the screen.
+ * 
+ * @author simonnystrom
+ *
+ */
 public class Ship extends Enemy {
 
 	public Ship(GameModel model) {

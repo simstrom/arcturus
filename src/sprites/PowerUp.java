@@ -6,6 +6,14 @@ import javafx.geometry.Rectangle2D;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 
+/**
+ * Superclass of all power-ups, making it easier to add new abilities in the
+ * future. Responsible for drawing it to the map when dropped and checking if
+ * being picked up by the player.
+ * 
+ * @author simonnystrom
+ *
+ */
 public abstract class PowerUp {
 	private Image image;
 	private int posX;

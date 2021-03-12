@@ -2,6 +2,12 @@ package sprites;
 
 import javafx.scene.image.Image;
 
+/**
+ * Holds a boolean value for whether the powerUp is active or not.
+ * 
+ * @author simonnystrom
+ *
+ */
 public class Shield extends PowerUp {
 	private boolean active;
 

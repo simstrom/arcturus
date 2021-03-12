@@ -2,10 +2,14 @@ package constants;
 
 import javafx.scene.image.Image;
 
+/**
+ * Declaration of global images used in the game.
+ * @author simonnystrom
+ *
+ */
 public interface Images {
 	Image MENU_BG = new Image("menubg.png");
 	Image SCORE_BG = new Image("scorebg.png");
-	Image GAME_BG = new Image("gamebg.png");
 	Image SPLASH_BG = new Image("splashbg.png");
 	
 	Image PLAYER = new Image("player.png");
@@ -32,13 +36,10 @@ public interface Images {
 			new Image("enemyRed4.png"),
 			new Image("enemyRed5.png"),
 	};
-//	KOLLA OM SPEED PÅ X AXEL ISTÄLLET!
 	Image METEORS[] = { 
 			new Image("meteor1.png"),
 			new Image("meteor2.png"),
 			new Image("meteor3.png"),
 			new Image("meteor4.png"),
 	};
-	Image ENEMY_LASER = new Image("enemylaser.png");
-	
 }

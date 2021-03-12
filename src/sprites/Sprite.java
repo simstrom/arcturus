@@ -8,6 +8,13 @@ import javafx.scene.image.Image;
 import sound.Sound;
 import states.GameModel;
 
+/**
+ * Superclass of all moving objects. Main responsibilities are to hold and
+ * update the position, status and image of the inherited object.
+ * 
+ * @author simonnystrom
+ *
+ */
 public abstract class Sprite {
 	protected GameModel model;
 	private Image image;

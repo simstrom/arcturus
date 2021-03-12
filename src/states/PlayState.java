@@ -23,20 +23,9 @@ import environment.PlayUI;
 import environment.World;
 
 /**
- * This state represents the Playing State of the Game The main responsibility
- * of this class is to; - create Game Objects - update Game Objects - draw Game
- * Objects Game Objects are for instance; players, enemies, npc's, etc...
- *
- * The PlayState can also be thought off as a blue print where data is loaded
- * into some container from a file or some other type of data storage.
- *
- * It can also be created by some class responsible for object creation and then
- * passed to the PlayState as a parameter. This means all the PlayState has to
- * do is receive a list of objects, store them in some container and then for
- * every object in that container update and render that object.
- *
- * This way you can let the user define different Levels based on what
- * parameters are passed into the PlayState.
+ * This class represents the actual playing of the game. It handles user input
+ * for moving and shooting - updating the game logic and render the sprites.
+ * 
  */
 public class PlayState extends GameState {
 
@@ -131,8 +120,6 @@ public class PlayState extends GameState {
 
 	@Override
 	public void update() {
-		// Here one would probably instead move the player and any
-		// enemies / moving obstacles currently active.
 		player.update();
 
 		for (int i = laserList.size() - 1; i >= 0; i--) {
@@ -153,7 +140,7 @@ public class PlayState extends GameState {
 						model.increaseLevel();
 						model.switchState(new SplashState(model));
 					}
-					int chance = Constants.RAND.nextInt(2);
+					int chance = Constants.RAND.nextInt(20);
 					if (chance == 1) {
 						int drop = Constants.RAND.nextInt(2);
 						if (drop == 1) {

@@ -4,6 +4,14 @@ import constants.Constants;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.canvas.GraphicsContext;
 
+/**
+ * Superclass of all projectiles to easily add enemy projectiles in the future.
+ * Holds general responsibilities for projectiles such as checking intersections
+ * and position.
+ * 
+ * @author simonnystrom
+ *
+ */
 public abstract class Projectile {
 	protected double posX;
 	protected double posY;

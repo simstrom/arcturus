@@ -4,11 +4,9 @@ import states.GameModel;
 import javafx.scene.canvas.Canvas;
 
 /**
- * The GamePanel wraps a Canvas
- *
- * The main responsibilities of the GamePanel are: - Supplying the game with a
- * GraphicsContext object for painting different states - Governing the size of
- * the "game-surface".
+ * GamePanel utilizes the Canvas class to supply the Game States with
+ * GraphicsContext for drawing objects.
+ * 
  */
 public class GamePanel extends Canvas {
 

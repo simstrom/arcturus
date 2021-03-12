@@ -15,23 +15,10 @@ import javafx.scene.input.MouseEvent;
 import main.GameFrame;
 
 /**
- * This class represents the current state of the game.
- *
- * This implementation of a state machine keeps a reference to the current state
- * (see /src/states/GameState).
- *
- * Please note: This is just one way to do it, there are several other ways and
- * none of them work for every case, so if you want to implement your own state
- * machine make sure that it can do all the operations that you need for your
- * project.
- *
- * To change state simply call the switchState(GameState nextState) function
- * passing a reference to some other gameState.
- *
- * Initial State: MenuState
+ * This class represents the current state of the game. It also are responsible
+ * for keeping track of game essential data such as highscore and current level.
  *
  */
-
 public class GameModel {
 	private GameFrame frame;
 	private GameState currentState;

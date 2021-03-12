@@ -4,6 +4,13 @@ import constants.Constants;
 import sound.Sound;
 import states.GameModel;
 
+/**
+ * Contains the player sprite and sound effects. Main responsibilities are to
+ * move the player based on input, keep track of lives and active power-ups.
+ * 
+ * @author simonnystrom
+ *
+ */
 public class Player extends Sprite {
 	private int posX;
 	private int posY;
@@ -21,7 +28,7 @@ public class Player extends Sprite {
 	public Player(GameModel model) {
 		super(model);
 		this.posX = 360;
-		this.posY = 800;
+		this.posY = Constants.SCREEN_HEIGHT-100;
 		this.velocityX = 0;
 		this.velocityY = 0;
 	}
@@ -67,7 +74,7 @@ public class Player extends Sprite {
 			lives--;
 			this.explode();
 		} else {
-			setPosition(posX = 360, posY = 800);
+			setPosition(posX = 360, posY = Constants.SCREEN_HEIGHT-100);
 			lives--;
 		}
 		lose.play();

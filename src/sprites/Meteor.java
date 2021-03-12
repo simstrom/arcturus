@@ -4,6 +4,14 @@ import constants.Constants;
 import constants.Images;
 import states.GameModel;
 
+/**
+ * One enemy-type which moves on the X-axis in a sideways direction with a
+ * individual(slower) speed. Spawns from either the left or right of the screen
+ * based on randomness.
+ * 
+ * @author simonnystrom
+ *
+ */
 public class Meteor extends Enemy {
 	int spawn;
 

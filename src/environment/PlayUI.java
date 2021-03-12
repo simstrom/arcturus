@@ -8,15 +8,21 @@ import javafx.scene.text.TextAlignment;
 import sprites.Player;
 import states.GameModel;
 
+/**
+ * Handles the printing of the UI in PlayState.
+ * 
+ * @author simonnystrom
+ *
+ */
 public class PlayUI {
 	private GameModel model;
 	private Player player;
-	
+
 	public PlayUI(GameModel model, Player player) {
 		this.model = model;
 		this.player = player;
 	}
-	
+
 	public void draw(GraphicsContext g) {
 		g.setTextAlign(TextAlignment.CENTER);
 		g.setFont(Constants.miscFont);
@@ -29,8 +35,8 @@ public class PlayUI {
 		g.fillText("Level: " + model.getLevel(), 730, 50);
 		if (model.getGameOver())
 			drawGameOver(g);
-		}
-	
+	}
+
 	public void drawGameOver(GraphicsContext g) {
 		g.setFont(Constants.mainFont);
 		g.setFill(Color.SLATEBLUE);
@@ -45,7 +51,7 @@ public class PlayUI {
 		g.setFont(Constants.miscFont);
 		g.fillText("Press SPACE to continue", Constants.SCREEN_WIDTH / 2, Constants.SCREEN_HEIGHT / 1.5);
 	}
-	
+
 	public void drawAmmo(GraphicsContext g, int ammoCounter) {
 		g.fillText("RAPID FIRE AMMO LEFT\n" + (ammoCounter) + " / " + Constants.POWER_AMMO, 360, 720);
 		g.drawImage(Images.RAPID_BADGE, 25, 80);

@@ -4,6 +4,12 @@ import constants.Constants;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 
+/**
+ * Generating animated stars for the background of different states.
+ * 
+ * @author simonnystrom
+ *
+ */
 public class World {
 	private int posX;
 	private int posY;
