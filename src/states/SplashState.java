@@ -89,6 +89,7 @@ public class SplashState extends GameState {
 	public void handleInput(List<String> input) {
 		if (input.contains("SPACE"))
 			model.switchState(new LevelTwo(model));
+			Sound.click.play();
 	}
 
 	@Override

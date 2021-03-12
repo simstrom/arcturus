@@ -28,11 +28,11 @@ import constants.Images;
  */
 public class MenuState extends GameState {
 	private Image bg = Images.MENU_BG;
-	private PlayState playState;
 
 	public MenuState(GameModel model) {
 		super(model);
-		playState = new PlayState(model);
+		if (!Sound.menuMusic.isPlaying())
+		Sound.menuMusic.play();
 	}
 
 	/**
@@ -58,21 +58,22 @@ public class MenuState extends GameState {
 
 		Button play = new Button(Constants.PLAY);
 		play.setOnAction(e -> {
-			model.switchState(playState);
+			Sound.click.play();
+			Sound.menuMusic.stop();
+			Sound.gameMusic.play();
+			model.switchState(new PlayState(model));
 		});
 
 		Button score = new Button(Constants.SCORE);
 		score.setOnAction(e -> {
+			Sound.click.play();
 			model.switchState(new ScoreState(model));
 		});
 
 		Button quit = new Button(Constants.QUIT);
-		quit.setOnAction(new EventHandler<ActionEvent>() {
-			@Override
-			public void handle(ActionEvent e) {
-				System.out.println("DONE");
-				System.exit(0);
-			}
+		quit.setOnAction(e -> {
+			Sound.click.play();
+			System.exit(0);
 		});
 
 		VBox menuItems = new VBox(30, play, score, quit);

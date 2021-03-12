@@ -2,6 +2,7 @@ package sprites;
 
 import constants.Constants;
 import states.GameModel;
+import states.Sound;
 
 public class Player extends Sprite {
 	private int posX;
@@ -11,6 +12,13 @@ public class Player extends Sprite {
 	private int lives = 3;
 	private boolean hasShield;
 	private boolean hasRapidFire;
+	private Sound laser = new Sound("resources/laser.mp3", 0.05);
+	private Sound lose = new Sound("resources/lose.mp3", 0.5);
+	private Sound shieldUp = new Sound("resources/shieldup.mp3", 0.5);
+	private Sound shieldDown = new Sound("resources/shielddown.mp3", 0.5);
+	private Sound rapidUp = new Sound("resources/rapidfire.wav", 0.5);
+
+
 
 	public Player(GameModel model) {
 		super(model);
@@ -53,6 +61,7 @@ public class Player extends Sprite {
 
 	@Override
 	public Projectile shoot() {
+		laser.play();
 		return new PlayerProjectile(model, posX, posY, hasRapidFire);
 	}
 
@@ -63,8 +72,8 @@ public class Player extends Sprite {
 		} else {
 			setPosition(posX = 360, posY = 800);
 			lives--;
-
 		}
+		lose.play();
 	}
 
 	public int getLives() {
@@ -73,6 +82,11 @@ public class Player extends Sprite {
 
 	public void setShield(boolean value) {
 		this.hasShield = value;
+		if (value == true) {
+			shieldUp.play();
+		} else {
+			shieldDown.play();
+		}
 	}
 
 	public boolean hasShield() {
@@ -81,6 +95,8 @@ public class Player extends Sprite {
 
 	public void setRapidFire(boolean value) {
 		this.hasRapidFire = value;
+		if (value == true)
+			rapidUp.play();
 	}
 
 	public boolean hasRapidFire() {

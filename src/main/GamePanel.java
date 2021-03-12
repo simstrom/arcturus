@@ -2,7 +2,6 @@ package main;
 
 import states.GameModel;
 import javafx.scene.canvas.Canvas;
-import javafx.scene.layout.Pane;
 
 /**
  * The GamePanel wraps a Canvas

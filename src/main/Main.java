@@ -1,7 +1,6 @@
 package main;
 
 import states.GameModel;
-import states.MenuState;
 
 import java.util.ArrayList;
 

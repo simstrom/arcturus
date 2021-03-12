@@ -70,6 +70,7 @@ public class ScoreState extends GameState {
 		VBox buttonBox = new VBox(back);
 		buttonBox.setAlignment(Pos.CENTER);
 		back.setOnAction(e -> {
+			Sound.click.play();
 			model.switchState(new MenuState(model));
 		});
 
@@ -94,6 +95,8 @@ public class ScoreState extends GameState {
 	@Override
 	public void deactivate(GameFrame frame) {
 		frame.getChildren().remove(contents);
+		if (Sound.gameMusic.isPlaying())
+			Sound.gameMusic.stop();
 	}
 
 }

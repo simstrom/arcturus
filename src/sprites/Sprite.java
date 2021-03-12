@@ -6,6 +6,7 @@ import javafx.geometry.Rectangle2D;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import states.GameModel;
+import states.Sound;
 
 public abstract class Sprite {
 	protected GameModel model;
@@ -17,6 +18,8 @@ public abstract class Sprite {
 	protected boolean exploding;
 	protected boolean destroyed;
 	private int explosionStep = 0;
+	
+	private Sound explosion = new Sound("resources/explosion.wav", 0.1);
 
 	public Sprite(GameModel model) {
 		this.model = model;
@@ -86,6 +89,7 @@ public abstract class Sprite {
 	public void explode() {
 		exploding = true;
 		explosionStep = -1;
+		explosion.play();
 	}
 
 	public boolean isDestroyed() {

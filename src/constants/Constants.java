@@ -19,7 +19,7 @@ import javafx.scene.text.FontWeight;
 public interface Constants {
 	String GAME_TITLE = "ARCTURUS";
 	int SCREEN_WIDTH = 800;
-	int SCREEN_HEIGHT = 1000;
+	int SCREEN_HEIGHT = 800;
 	String STYLESHEET = "style.css";
 	
 	String PLAY = "PLAY";
@@ -34,7 +34,7 @@ public interface Constants {
 	Random RAND = new Random();
 	int PLAYER_SIZE = 60;
 	int MAX_AMMO = 10;
-	int POWER_AMMO = MAX_AMMO * 2;
+	int POWER_AMMO = MAX_AMMO * 3;
 	int MAX_ENEMIES = 10;
 	
 	int EXPLOSION_W = 128;

@@ -39,7 +39,7 @@ import constants.Images;
  * parameters are passed into the PlayState.
  */
 public class PlayState extends GameState {
-
+	
 	protected Player player;
 	private int ammoCounter = 0;
 	private ArrayList<Projectile> laserList = new ArrayList<>();
@@ -48,6 +48,8 @@ public class PlayState extends GameState {
 	private PowerUp activePower = null;
 	protected Color bgColor;
 	protected Image bg;
+	
+	
 
 	public PlayState(GameModel model) {
 		super(model);
@@ -97,7 +99,7 @@ public class PlayState extends GameState {
 		g.fillText("X " + player.getLives(), 410, 50);
 		g.fillText("Level: " + model.getLevel(), 730, 50);
 		if (player.hasRapidFire()) {
-			g.fillText("RAPID FIRE AMMO LEFT\n" + (ammoCounter) + " / 20", 360, 920);
+			g.fillText("RAPID FIRE AMMO LEFT\n" + (ammoCounter) + " / " + Constants.POWER_AMMO, 360, 920);
 			g.drawImage(Images.RAPID_BADGE, 25, 80);
 		}
 		if (model.getGameOver()) {
@@ -149,6 +151,7 @@ public class PlayState extends GameState {
 		if (input.contains("S"))
 			player.addVelocity(0, 6);
 		if (model.getGameOver() && (input.contains("SPACE"))) {
+			Sound.click.play();
 			model.setGameOver(false);
 			model.switchState(new ScoreState(model));
 		}
@@ -175,7 +178,7 @@ public class PlayState extends GameState {
 					if (laserList.size() != 0)
 						laserList.remove(i);
 //					progress++;
-					if (model.getScore() == 10) {
+					if (model.getScore() == 50) {
 						model.increaseLevel();
 						model.switchState(new SplashState(model));
 					}
