@@ -1,6 +1,11 @@
 # Arcturus
 
-2D space shooter game made using JavaFX.
+2D arcade styled space shooter game made using JavaFX.
+
+# Features
+- Infinitely scaling difficulty which spawns more enemies and obstacles while increasing tempo.
+- Multiple power-ups such as shield and rapid fire.
+- High-scores saves locally to file.
 
 # Previews
 ![menu screenshot](https://raw.githubusercontent.com/snystroms/arcturus/master/preview/menu.png)
